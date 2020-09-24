@@ -21,6 +21,7 @@ const UserSchema = new Schema(
     username: {
       type: String,
       min: 4,
+      max: 30,
       required: true,
       trim: true,
       lowercase: true,

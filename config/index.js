@@ -1,3 +1,4 @@
+const celebrateErrorHandler = require('./celebrate/error-handler');
 const connectToDB = require('./mongoose');
 require('dotenv').config({ path: '.env' });
 const helmet = require('helmet');
@@ -32,10 +33,13 @@ module.exports = (app, routes) => {
   // routes setup
   app.use(`/api/v${process.env.API_VERSION}`, routes);
 
+  // celebrate error handler
+  app.use(celebrateErrorHandler);
+
   // Connect to DB
   connectToDB(() => {
     app.listen(process.env.PORT || PORT, () => {
-      console.log('app is running on', process.env.PORT || PORT);
+      console.log('App is running on', process.env.PORT || PORT);
     });
   });
 };
