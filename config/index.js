@@ -1,4 +1,4 @@
-const connectToDB = require('./db/mongoose');
+const connectToDB = require('./mongoose');
 require('dotenv').config({ path: '.env' });
 const helmet = require('helmet');
 const RateLimit = require('express-rate-limit');
