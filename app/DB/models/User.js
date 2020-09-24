@@ -77,7 +77,7 @@ UserSchema.pre('save', async function (next) {
   }
 });
 
-UserSchema.methods.generateJWT = function (JWT_SECRET) {
+UserSchema.methods.generateJWT = function () {
   try {
     const payload = {
       _id: this._id,

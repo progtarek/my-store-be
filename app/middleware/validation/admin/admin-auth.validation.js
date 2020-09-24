@@ -12,3 +12,10 @@ module.exports.validateAdminSignup = celebrate({
       .regex(/^[a-zA-Z0-9.\-_$@*!]{4,30}$/),
   }),
 });
+
+module.exports.validateAdminLogin = celebrate({
+  body: Joi.object().keys({
+    password: Joi.string().min(8).max(20).required(),
+    email: Joi.string().email().required(),
+  }),
+});
