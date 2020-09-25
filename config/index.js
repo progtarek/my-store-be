@@ -6,7 +6,7 @@ const RateLimit = require('express-rate-limit');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
-const PORT = 3000;
+const PORT = 4000;
 
 module.exports = (app, routes) => {
   // helmet setup
