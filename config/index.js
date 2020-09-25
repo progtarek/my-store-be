@@ -6,6 +6,8 @@ const RateLimit = require('express-rate-limit');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
+const passport = require('passport');
+const passportStrategiesSetup = require('./passport');
 const PORT = 4000;
 
 module.exports = (app, routes) => {
@@ -29,6 +31,10 @@ module.exports = (app, routes) => {
 
   // morgan logging setup
   app.use(morgan('dev'));
+
+  // Passport setup
+  app.use(passport.initialize({ userProperty: 'user' }));
+  passportStrategiesSetup(passport);
 
   // routes setup
   app.use(`/api/v${process.env.API_VERSION}`, routes);

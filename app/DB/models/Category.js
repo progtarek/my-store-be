@@ -37,7 +37,7 @@ const CategorySchema = new Schema(
 );
 
 CategorySchema.pre('save', function (next) {
-  this.slug = slugify(this.name.en, '_');
+  this.slug = slugify(this.name.en, '-');
   next();
 });
 
