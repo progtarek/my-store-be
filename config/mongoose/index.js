@@ -3,7 +3,7 @@ const mongoose = require('./mongoose-setup');
 module.exports = async function (cb) {
   try {
     const options = {
-      dbName: 'my-booking',
+      dbName: 'my-store',
       autoIndex: true,
       useNewUrlParser: true,
       useUnifiedTopology: true,

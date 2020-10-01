@@ -7,7 +7,13 @@ module.exports = (err, req, res, next) => {
     return res.status(422).json({
       message: error.message,
     });
+  } else {
+    return res.status(500).json({
+      message:
+        err && err.stack
+          ? err.stack.toString().split(/\r\n|\n/)[0]
+          : 'There is something wrong. see error stack.',
+    });
   }
-
-  return next(err);
+  next(err);
 };

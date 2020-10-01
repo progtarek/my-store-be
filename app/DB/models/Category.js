@@ -10,14 +10,14 @@ const CategorySchema = new Schema(
         trim: true,
         index: true,
         unique: true,
-        min: 4,
+        min: 3,
         uniqueCaseInsensitive: true,
       },
       ar: {
         required: true,
         type: String,
         trim: true,
-        min: 4,
+        min: 3,
         index: true,
         unique: true,
         uniqueCaseInsensitive: true,
@@ -32,12 +32,19 @@ const CategorySchema = new Schema(
       ref: 'Category',
       required: false,
     },
+    sort: {
+      type: Number,
+      required: true,
+    },
   },
   { timestamps: true }
 );
 
 CategorySchema.pre('save', function (next) {
-  this.slug = slugify(this.name.en, '-');
+  this.slug = slugify(this.name.en, {
+    lower: true,
+    replacement: '-',
+  });
   next();
 });
 

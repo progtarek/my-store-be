@@ -11,6 +11,7 @@ const findUserByEmail = require('../../middleware/finds/findUserByEmail');
 
 // Controllers
 const { signup, login } = require('../../controllers/admin/admin-auth.ctrl');
+const passport = require('passport');
 
 router.post('/signup', validateAdminSignup, signup);
 router.post('/login', validateAdminLogin, findUserByEmail, login);
