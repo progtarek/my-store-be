@@ -16,6 +16,7 @@ const {
   create,
   update,
   readAll,
+  remove,
 } = require('../../controllers/admin/admin-category.ctrl');
 
 router.get(
@@ -40,6 +41,13 @@ router.patch(
   findCategory,
   validateCategoryExistent,
   update
+);
+
+router.delete(
+  '/:_id',
+  passport.authenticate('jwt-admin', { session: false }),
+  findCategory,
+  remove
 );
 
 module.exports = router;

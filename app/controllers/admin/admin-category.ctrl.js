@@ -34,3 +34,14 @@ module.exports.update = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports.remove = async (req, res, next) => {
+  try {
+    let { category } = res.locals;
+    await category.remove();
+
+    res.status(204).json();
+  } catch (error) {
+    next(error);
+  }
+};
