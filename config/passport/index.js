@@ -25,4 +25,23 @@ module.exports = function (passport) {
       }
     })
   );
+
+  passport.use(
+    'jwt-user',
+    new Strategy(opts, async function (jwt_payload, done) {
+      try {
+        const user = await User.findOne({
+          _id: jwt_payload._id,
+          role: 'user',
+        });
+        if (!user) return done(new Error('This User is not registered'));
+
+        return done(null, user);
+      } catch (error) {
+        return done({
+          message: 'This user is not registered or not authorized',
+        });
+      }
+    })
+  );
 };

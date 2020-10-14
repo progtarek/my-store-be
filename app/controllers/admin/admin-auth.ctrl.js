@@ -31,7 +31,7 @@ module.exports.login = async (req, res, next) => {
     const { password } = req.body;
 
     const isPasswordCorrect = bcrypt.compareSync(password, user.password);
-    if (!isPasswordCorrect) {
+    if (!isPasswordCorrect || user.role !== 'admin') {
       return res.status(401).json({
         message: 'Invalid credentials',
       });
