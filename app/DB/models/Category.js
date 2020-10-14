@@ -26,11 +26,15 @@ const CategorySchema = new Schema(
     slug: {
       type: String,
       trim: true,
+      index: true,
+      unique: true,
+      uniqueCaseInsensitive: true,
     },
     parent: {
       type: Schema.Types.ObjectId,
       ref: 'Category',
       required: false,
+      default: null,
     },
     sort: {
       type: Number,
