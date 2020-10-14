@@ -9,9 +9,14 @@ const {
 // Finds
 const findUserCart = require('../../middleware/finds/findUserCart');
 const findProductsByIds = require('../../middleware/finds/findProductsByIds');
+const findItemInCart = require('../../middleware/finds/findItemInCart');
 
 // Controllers
-const { create, read } = require('../../controllers/user/user-cart.ctrl');
+const {
+  create,
+  read,
+  remove,
+} = require('../../controllers/user/user-cart.ctrl');
 
 router.get(
   '/',
@@ -27,6 +32,13 @@ router.post(
   findProductsByIds,
   findUserCart,
   create
+);
+
+router.delete(
+  '/:_id',
+  passport.authenticate('jwt-user', { session: false }),
+  findItemInCart,
+  remove
 );
 
 module.exports = router;

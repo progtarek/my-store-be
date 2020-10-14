@@ -37,3 +37,16 @@ module.exports.read = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports.remove = async (req, res, next) => {
+  try {
+    let { cart } = res.locals;
+    cart.items.pull({
+      _id: req.params._id,
+    });
+    await cart.save();
+    res.status(200).json(cart);
+  } catch (error) {
+    next(error);
+  }
+};
