@@ -11,7 +11,14 @@ const findUserCart = require('../../middleware/finds/findUserCart');
 const findProductsByIds = require('../../middleware/finds/findProductsByIds');
 
 // Controllers
-const { create } = require('../../controllers/user/user-cart.ctrl');
+const { create, read } = require('../../controllers/user/user-cart.ctrl');
+
+router.get(
+  '/',
+  passport.authenticate('jwt-user', { session: false }),
+  findUserCart,
+  read
+);
 
 router.post(
   '/',

@@ -28,3 +28,12 @@ module.exports.create = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports.read = async (req, res, next) => {
+  try {
+    let { cart } = res.locals;
+    res.status(200).json(cart);
+  } catch (error) {
+    next(error);
+  }
+};
