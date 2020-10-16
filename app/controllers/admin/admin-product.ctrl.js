@@ -2,8 +2,13 @@ const Product = require('../../DB/models/Product');
 
 module.exports.readAll = async (req, res, next) => {
   try {
-    const { limit, page } = req.params;
-    const products = await Product.paginate({}, { limit, page });
+    let { limit, page } = req.query;
+    limit = limit ? parseInt(limit, 10) : 10;
+    page = page ? parseInt(page, 10) : 1;
+    const products = await Product.paginate(
+      {},
+      { limit, page, populate: [{ path: 'category' }] }
+    );
     res.status(200).json(products);
   } catch (error) {
     next(error);

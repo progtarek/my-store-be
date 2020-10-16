@@ -36,7 +36,7 @@ const CategorySchema = new Schema(
       required: false,
       default: null,
     },
-    productPicture: { type: String, required: true },
+    categoryPicture: { type: String, required: true },
     sort: {
       type: Number,
       required: true,
