@@ -7,7 +7,14 @@ module.exports.readAll = async (req, res, next) => {
     page = page ? parseInt(page, 10) : 1;
     const products = await Product.paginate(
       {},
-      { limit, page, populate: [{ path: 'category' }] }
+      {
+        limit,
+        page,
+        populate: [
+          { path: 'category', select: 'name' },
+          { path: 'createdBy updatedBy', select: 'firstName' },
+        ],
+      }
     );
     res.status(200).json(products);
   } catch (error) {
