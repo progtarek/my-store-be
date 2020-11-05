@@ -3,7 +3,14 @@ const Category = require('../../DB/models/Category');
 module.exports.readAll = async (req, res, next) => {
   try {
     const { limit, page } = req.params;
-    const categories = await Category.paginate({}, { limit, page });
+    const categories = await Category.paginate(
+      {},
+      {
+        limit,
+        page,
+        populate: [{ path: 'parent', select: 'name' }],
+      }
+    );
     res.status(200).json(categories);
   } catch (error) {
     next(error);

@@ -3,6 +3,7 @@ const Category = require('../../../DB/models/Category');
 
 module.exports.validateCategorySchema = celebrate({
   body: Joi.object().keys({
+    categoryPicture: Joi.string().required(),
     name: Joi.object().keys({
       en: Joi.string().required().min(3),
       ar: Joi.string().required().min(3),
