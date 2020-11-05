@@ -17,6 +17,7 @@ const {
   update,
   readAll,
   remove,
+  readById,
 } = require('../../controllers/admin/admin-category.ctrl');
 
 router.get(
@@ -24,6 +25,13 @@ router.get(
   passport.authenticate('jwt-admin', { session: false }),
   validateReadManyDocuments,
   readAll
+);
+
+router.get(
+  '/:_id',
+  passport.authenticate('jwt-admin', { session: false }),
+  findCategory,
+  readById
 );
 
 router.post(

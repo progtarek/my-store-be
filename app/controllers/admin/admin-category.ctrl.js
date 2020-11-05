@@ -42,6 +42,16 @@ module.exports.update = async (req, res, next) => {
   }
 };
 
+module.exports.readById = async (req, res, next) => {
+  try {
+    let { category } = res.locals;
+
+    res.status(200).json(category);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports.remove = async (req, res, next) => {
   try {
     let { category } = res.locals;
