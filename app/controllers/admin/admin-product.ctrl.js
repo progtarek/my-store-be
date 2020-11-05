@@ -22,6 +22,16 @@ module.exports.readAll = async (req, res, next) => {
   }
 };
 
+module.exports.readById = async (req, res, next) => {
+  try {
+    let { product } = res.locals;
+
+    res.status(200).json(product);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports.create = async (req, res, next) => {
   try {
     const { user } = req;
