@@ -20,7 +20,7 @@ const uploadImage = (file, folder) => {
         //   url: result.url,
         //   id: result.public_id,
         // });
-        resolve(result.public_id);
+        resolve(result.url);
       }
     );
   });
